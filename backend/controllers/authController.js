@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const Student = require('../models/Student');
+const Admin = require('../models/Admin');
 
 // @desc  Login student or admin
 // @route POST /api/auth/login
@@ -16,13 +17,20 @@ const login = async (req, res, next) => {
 
     // ── Admin login ──────────────────────────────────────────────────────────
     if (role === 'admin') {
-      if (
-        email !== process.env.ADMIN_EMAIL ||
-        password !== process.env.ADMIN_PASSWORD
-      ) {
+      const admin = await Admin.findOne({ email });
+
+      if (!admin) {
         return res.status(401).json({
           success: false,
-          message: 'Invalid admin credentials',
+          message: 'Invalid email or password',
+        });
+      }
+
+      const isMatch = await bcrypt.compare(password, admin.password);
+      if (!isMatch) {
+        return res.status(401).json({
+          success: false,
+          message: 'Invalid email or password',
         });
       }
 
@@ -31,8 +39,9 @@ const login = async (req, res, next) => {
         message: 'Admin login successful',
         role: 'admin',
         user: {
-          name: 'Admin',
-          email: process.env.ADMIN_EMAIL,
+          _id: admin._id,
+          name: admin.name,
+          email: admin.email,
         },
       });
     }

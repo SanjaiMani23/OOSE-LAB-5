@@ -15,6 +15,7 @@ import Enrollments from './pages/Enrollments';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminRegistrationList from './pages/AdminRegistrationList';
 import CourseFees from './pages/CourseFees';
+import AdminStudents from './pages/AdminStudents';
 
 // Protected route
 const Protected = ({ children, requiredRole }) => {
@@ -69,6 +70,7 @@ function App() {
       <Route path="/admin/registrations" element={<Page role="admin"><AdminRegistrationList /></Page>} />
       <Route path="/admin/courses" element={<Page role="admin"><CourseInformation /></Page>} />
       <Route path="/admin/course-fees" element={<Page role="admin"><CourseFees /></Page>} />
+      <Route path="/admin/students" element={<Page role="admin"><AdminStudents /></Page>} />
 
       {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { courseAPI } from '../services/api';
-import { DollarSign, Check, X } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 const CourseFees = () => {
   const [courses, setCourses] = useState([]);

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courseAPI } from '../services/api';
-import StatusBadge from '../components/StatusBadge';
 
 const CourseInformation = () => {
   const [courses, setCourses] = useState([]);

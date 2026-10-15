@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { reservationAPI } from '../services/api';
 import { ClipboardList } from 'lucide-react';
@@ -10,15 +10,16 @@ const Reservations = () => {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     try {
       const d = await reservationAPI.getAll(studentId);
       setReservations(d.data || []);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
-  };
+  }, [studentId]);
 
-  useEffect(() => { load(); }, [studentId]);
+  // eslint-disable-next-line react/set-state-in-effect
+  useEffect(() => { load(); }, [load]);
 
   const handleCancel = async (resId) => {
     if (!window.confirm('Cancel this reservation?')) return;

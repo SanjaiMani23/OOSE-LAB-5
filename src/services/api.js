@@ -25,6 +25,11 @@ export const authAPI = {
     }),
 };
 
+// ── Students ─────────────────────────────────────────────────────────────────
+export const studentAPI = {
+  getAll: () => request('/students'),
+};
+
 // ── Courses ──────────────────────────────────────────────────────────────────
 export const courseAPI = {
   getAll: () => request('/courses'),

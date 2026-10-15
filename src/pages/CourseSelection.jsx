@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { courseAPI } from '../services/api';
-import { useAppContext } from '../context/AppContext';
 import { User, Clock, BookOpen, Users, ArrowLeft } from 'lucide-react';
 import StatusBadge from '../components/StatusBadge';
 
 const CourseSelection = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { currentUser } = useAppContext();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
 

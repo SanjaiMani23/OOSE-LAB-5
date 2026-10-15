@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
+const studentRoutes = require('./routes/studentRoutes');
 
 // Error middleware
 const errorMiddleware = require('./middleware/errorMiddleware');
@@ -30,6 +31,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/enrollments', enrollmentRoutes);
+app.use('/api/students', studentRoutes);
 
 // ── Health check ─────────────────────────────────────────────────────────────
 app.get('/', (req, res) => {
